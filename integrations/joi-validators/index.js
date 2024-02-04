@@ -1,28 +1,7 @@
-import axios from "axios";
 import express from "express";
-import { createClient } from "redis";
 
 const app = express();
 app.use(express.json());
-
-// const client = createClient({
-//   url: "redis://redis:6379",
-
-//   // url: process.env.REDIS_URL,
-//   // password: process.env.REDIS_PASSWORD,
-// });
-
-const client = createClient({
-  socket: {
-    host: "localhost",
-    port: 6379,
-  },
-  // password: '<password>'
-});
-client.on("error", async (err) => {
-  console.log(err);
-});
-await client.connect().catch(console.error);
 
 const homePageAPI = async (req, res) => {
   try {
